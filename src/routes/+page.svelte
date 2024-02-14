@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import { productsQueries } from './products';
+	import { createQuery } from '@tanstack/svelte-query';
+
+	const query = createQuery(productsQueries().all());
+</script>
+
+<ul>
+	{#each $query.data ?? [] as product}
+		<li><a href="/{product.id}">{product.title}</a></li>
+	{/each}
+</ul>
