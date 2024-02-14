@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
+	import { QueryClient, QueryClientProvider, hydrate } from '@tanstack/svelte-query';
 	import { SvelteQueryDevtools } from '@tanstack/svelte-query-devtools';
 	import { page } from '$app/stores';
 	import '@picocss/pico';
@@ -12,6 +12,8 @@
 			}
 		}
 	});
+
+	$: hydrate(client, $page.data.dehydratedClient);
 </script>
 
 <QueryClientProvider {client}>

@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { createQuery, hydrate, useQueryClient } from '@tanstack/svelte-query';
+	import { createQuery } from '@tanstack/svelte-query';
 	import { productsQueries } from '../products';
 
 	export let data;
-
-	$: hydrate(useQueryClient(), data.dehydratedClient);
 
 	$: query = createQuery(productsQueries().one(data.id));
 </script>
